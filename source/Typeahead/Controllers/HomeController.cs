@@ -30,34 +30,47 @@ namespace Typeahead.Controllers
         public JsonResult TestData(string query)
         {
 
-            var data = new DummyData[]
-            {
-                new DummyData {Value = "Alabama"}, new DummyData {Value = "Alaska"}, new DummyData {Value = "Arizona"}, new DummyData {Value = "Arkansas"},
-                new DummyData {Value = "California"},
-                new DummyData {Value = "Colorado"}, new DummyData {Value = "Connecticut"}, new DummyData {Value = "Delaware"}, new DummyData {Value = "Florida"},
-                new DummyData {Value = "Georgia"}, new DummyData {Value = "Hawaii"},
-                new DummyData {Value = "Idaho"}, new DummyData {Value = "Illinois"}, new DummyData {Value = "Indiana"}, new DummyData {Value = "Iowa"},
-                new DummyData {Value = "Kansas"}, new DummyData {Value = "Kentucky"}, new DummyData {Value = "Louisiana"},
-                new DummyData {Value = "Maine"}, new DummyData {Value = "Maryland"}, new DummyData {Value = "Massachusetts"}, new DummyData {Value = "Michigan"},
-                new DummyData {Value = "Minnesota"},
-                new DummyData {Value = "Mississippi"}, new DummyData {Value = "Missouri"}, new DummyData {Value = "Montana"}, new DummyData {Value = "Nebraska"},
-                new DummyData {Value = "Nevada"}, new DummyData {Value = "new DummyData Hampshire"},
-                new DummyData {Value = "new DummyData Jersey"}, new DummyData {Value = "new DummyData Mexico"}, new DummyData {Value = "new DummyData York"},
-                new DummyData {Value = "North Carolina"}, new DummyData {Value = "North Dakota"},
-                new DummyData {Value = "Ohio"}, new DummyData {Value = "Oklahoma"}, new DummyData {Value = "Oregon"}, new DummyData {Value = "Pennsylvania"},
-                new DummyData {Value = "Rhode Island"},
-                new DummyData {Value = "South Carolina"}, new DummyData {Value = "South Dakota"}, new DummyData {Value = "Tennessee"},
-                new DummyData {Value = "Texas"}, new DummyData {Value = "Utah"}, new DummyData {Value = "Vermont"},
-                new DummyData {Value = "Virginia"}, new DummyData {Value = "Washington"}, new DummyData {Value = "West Virginia"},
-                new DummyData {Value = "Wisconsin"}, new DummyData {Value = "Wyoming"}
-            };
-            return Json( data.Where(d => d.Value.Contains(query)) , JsonRequestBehavior.AllowGet);
+            var data = State.GetDummyData();
+            return Json( data.Where(d => d.Number.ToString().Contains(query) ) , JsonRequestBehavior.AllowGet);
         }
 
-        public class DummyData
+
+    }
+    public class State
+    {
+        public State()
         {
-            public string Value { get; set; }
-            public string FullName { get { return Value + " is Full Name"; } }
+ 
+        }
+        public string Number { get; set; }
+       public string Name { get; set; }
+
+       public static State[] _States { get; set; }
+        public static State[] GetDummyData()
+        {
+            var randum = new Random(125333);
+            
+            return _States ?? (_States = new State[]
+            {
+                new State {Name = "Alabama", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Alaska", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Arizona", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Arkansas", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "California", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Colorado", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Connecticut", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Delaware", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Florida", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Georgia", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Hawaii", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Idaho", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Illinois", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Indiana", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Iowa", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Kansas", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Kentucky", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Louisiana", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Maine", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Maryland", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Massachusetts", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Michigan", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Minnesota", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Mississippi", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Missouri", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Montana", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Nebraska", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Nevada", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "new State Hampshire", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "new State Jersey", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "new State Mexico", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "new State York", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "North Carolina", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "North Dakota", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Ohio", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Oklahoma", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Oregon", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Pennsylvania", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Rhode Island", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "South Carolina", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "South Dakota", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Tennessee", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Texas", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Utah", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Vermont", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Virginia", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Washington", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "West Virginia", Number = randum.Next(340000, 900000).ToString()},
+                new State {Name = "Wisconsin", Number = randum.Next(340000, 900000).ToString()}, new State {Name = "Wyoming", Number = randum.Next(340000, 900000).ToString()}
+            });
         }
     }
 }
