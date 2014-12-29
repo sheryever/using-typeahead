@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+    <div id="remote" class="col-md-10 well">
+        Value: <input type="text" name="text" id="text" placeholder="text" class="text typeahead"/> <br/>
+        Full Name: <input type="text" name="fullName" id="fullName" disabled="disabled" />
+    </div>
+        
+
+</div>
+
+@section scripts
+{
+    
+    <script src="~/Scripts/typeahead.bundle.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var bestPictures = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: '/Home/testdata?query=%QUERY',
+
+            });
+
+            bestPictures.initialize();
+
+            $('#remote .typeahead').typeahead(null, {
+                name: 'best-pictures',
+                displayKey: 'Value',
+                minLength: 3,
+                source: bestPictures.ttAdapter()
+            });
+
+            $('#remote .typeahead').on('typeahead:selected', function(event, suggestion, datasetName) {
+                console.log(suggestion);
+                $('#fullName').val(suggestion.FullName);
+            });
+        });
+    </script>
+
+}

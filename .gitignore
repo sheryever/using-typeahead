@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/source/packages
+*.user
+*.suo
+/source/Typeahead/bin
+/source/Typeahead/obj/Debug
